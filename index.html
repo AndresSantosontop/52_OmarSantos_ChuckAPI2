@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>52_OmarSantos_ChuckAPI</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: lightyellow;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+        }
+
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: rgb(240, 42, 42);
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+
+        #chiste {
+            margin-top: 30px;
+            font-size: 18px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chistes de Chuck Norris</h1>
+    <button onclick="obtenerChiste()">Mostrar chiste</button>
+    <div id="chiste"></div>
+
+    <script>
+        function obtenerChiste() {
+            fetch("https://api.chucknorris.io/jokes/random")
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    document.getElementById("chiste").innerText = datos.value;
+                })
+                .catch(error => {
+                    document.getElementById("chiste").innerText = "No se pudo cargar el chiste.";
+                });
+        }
+    </script>
+</body>
+</html>
